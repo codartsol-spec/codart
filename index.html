@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CODART — Freelance Digital Studio</title>
+  <meta name="description"
+    content="CODART is a group of three friends delivering web development and graphic design solutions. From WordPress &amp; Shopify websites to logos, branding &amp; social media — we build digital experiences that grow your business." />
+  <meta name="keywords"
+    content="web development, graphic design, WordPress, Shopify, logo design, social media, branding, Pakistan, Lahore" />
+  <meta property="og:title" content="CODART — Freelance Digital Studio" />
+  <meta property="og:description"
+    content="Three friends. One mission. We build websites, design brands, and grow businesses." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codart.site/" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>" />
+</head>
+
+<body>
+
+  <!-- Noise Texture Overlay -->
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Page Loader -->
+  <div id="page-loader">
+    <div class="loader-logo">COD<span>ART</span></div>
+    <div class="loader-bar"></div>
+  </div>
+
+  <!-- ══════════════ NAVIGATION ══════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">COD<span>ART</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#pricing-preview">Packages</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#testimonials">Clients</a></li>
+          <li><a href="demos.html" class="nav-demos-btn">Demos ✦</a></li>
+          <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero" onclick="closeMobile()">Home</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+    <a href="#pricing-preview" onclick="closeMobile()">Packages</a>
+    <a href="#team" onclick="closeMobile()">Team</a>
+    <a href="#testimonials" onclick="closeMobile()">Clients</a>
+    <a href="demos.html" class="nav-demos-btn" onclick="closeMobile()">Demos ✦</a>
+    <a href="#contact" class="nav-cta" onclick="closeMobile()">Get a Quote →</a>
+  </div>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section id="hero">
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-bg-glow glow-1" aria-hidden="true"></div>
+    <div class="hero-bg-glow glow-2" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">✦ Freelance Studio · Est. 2022</div>
+
+        <h1 class="hero-title">
+          <span class="line"><span class="line-inner">We craft digital</span></span>
+          <span class="line"><span class="line-inner gold-text">experiences that</span></span>
+          <span class="line">
+            <span class="line-inner">
+              <span id="typed-text"></span><span id="typed-cursor"></span>
+            </span>
+          </span>
+        </h1>
+
+        <p class="hero-description">
+          We're CODART — three friends who turned our passion for design and tech into a freelance studio that builds
+          stunning websites and brand identities for clients around the world.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#contact" class="btn btn-primary">Start Your Project ✦</a>
+          <a href="#services" class="btn btn-outline">Explore Services</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="hero-scroll-indicator" aria-label="Scroll down">
+      <span>Scroll</span>
+      <div class="scroll-mouse"></div>
+    </a>
+  </section>
+
+  <!-- ══════════════ STATS STRIP ══════════════ -->
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number">
+            <span class="counter" data-target="30">0</span><span class="suffix">+</span>
+          </div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-item reveal delay-2">
+          <div class="stat-number">
+            <span class="counter" data-target="30">0</span><span class="suffix">+</span>
+          </div>
+          <div class="stat-label">Satisfied Clients</div>
+        </div>
+        <div class="stat-item reveal delay-3">
+          <div class="stat-number">
+            <span class="counter" data-target="3">0</span><span class="suffix">+</span>
+          </div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat-item reveal delay-4">
+          <div class="stat-number">
+            <span class="counter" data-target="100">0</span><span class="suffix">%</span>
+          </div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ABOUT ══════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-image-frame">
+            <div class="about-monogram">CA</div>
+          </div>
+          <div class="about-badge-float badge-1">
+            <div class="badge-number">30+</div>
+            <div class="badge-label">Projects Done</div>
+          </div>
+          <div class="about-badge-float badge-2">
+            <div class="badge-number" style="color:var(--gold)">5★</div>
+            <div class="badge-label" style="color:var(--text-secondary)">Avg. Client Rating</div>
+          </div>
+        </div>
+
+        <div class="about-text reveal-right">
+          <div class="section-label">Who We Are</div>
+          <h2 class="section-title">We Turn Vision Into <span>Digital Reality</span></h2>
+          <p class="about-description">
+            CODART started as a simple idea between three friends — Oneeb, Anas, and Hassan — who shared a passion for
+            web development, graphic design, and building things that look great online. What began as a side hustle
+            quickly turned into a proper freelance studio with real clients across Japan, the US, and beyond.
+          </p>
+          <p class="about-description">
+            We don't operate like a big agency — we work closely with every client, treat each project personally, and
+            bring the same hustle we had on day one. When you work with CODART, you work directly with the people doing
+            the work.
+          </p>
+
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="feature-icon">🌐</div>
+              <div class="feature-text">
+                <strong>Global Clients</strong>
+                <span>Serving businesses in Japan, US & beyond</span>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="feature-icon">⚡</div>
+              <div class="feature-text">
+                <strong>Fast Delivery</strong>
+                <span>Projects completed on-time, every time</span>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="feature-icon">🎯</div>
+              <div class="feature-text">
+                <strong>Result-Driven</strong>
+                <span>Websites that convert visitors to clients</span>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="feature-icon">🛡️</div>
+              <div class="feature-text">
+                <strong>Post-Launch Support</strong>
+                <span>We stay with you after go-live</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-primary">Work With Us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ SERVICES ══════════════ -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header">
+        <div class="section-label reveal">What We Do</div>
+        <h2 class="section-title reveal delay-1">Our <span>Core Services</span></h2>
+        <p class="section-subtitle reveal delay-2">Everything your business needs to stand out online — from development
+          to design, we handle it all under one roof.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Web Development -->
+        <div class="glass-card service-card reveal delay-1">
+          <div class="service-icon-wrap">🌐</div>
+          <h3 class="service-title">Web Development</h3>
+          <p class="service-description">Custom websites built for performance, responsiveness, and lead conversion —
+            whether you need a portfolio, business site, or full eCommerce store.</p>
+          <ul class="service-features">
+            <li>WordPress & Shopify development</li>
+            <li>Mobile-first responsive design</li>
+            <li>eCommerce & booking integrations</li>
+            <li>On-page SEO optimization</li>
+            <li>Speed & performance tuning</li>
+          </ul>
+          <a href="#pricing-preview" class="service-link">View Packages</a>
+        </div>
+
+        <!-- Logo & Branding -->
+        <div class="glass-card service-card reveal delay-2">
+          <div class="service-icon-wrap">✦</div>
+          <h3 class="service-title">Logo & Brand Identity</h3>
+          <p class="service-description">Unique visual identities that reflect your brand's personality and work
+            flawlessly across digital, print, and merchandise channels.</p>
+          <ul class="service-features">
+            <li>Custom logo design (multiple concepts)</li>
+            <li>Brand color palette & typography</li>
+            <li>T-shirt & apparel designs</li>
+            <li>Business cards & letterheads</li>
+            <li>Complete branding packages</li>
+          </ul>
+          <a href="#pricing-preview" class="service-link">View Packages</a>
+        </div>
+
+        <!-- Social Media -->
+        <div class="glass-card service-card reveal delay-3">
+          <div class="service-icon-wrap">📱</div>
+          <h3 class="service-title">Social Media Design</h3>
+          <p class="service-description">Branded post designs engineered for engagement, reach, and platform consistency
+            — helping your audience remember and trust your brand.</p>
+          <ul class="service-features">
+            <li>Instagram, Facebook & LinkedIn posts</li>
+            <li>Custom graphics & illustrations</li>
+            <li>Branded templates & content calendars</li>
+            <li>Stories, reels covers & banners</li>
+            <li>Monthly design packages available</li>
+          </ul>
+          <a href="#pricing-preview" class="service-link">View Packages</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PORTFOLIO ══════════════ -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="portfolio-header">
+        <div class="section-label reveal">Our Work</div>
+        <h2 class="section-title reveal delay-1">Selected <span>Projects</span></h2>
+        <p class="section-subtitle reveal delay-2">A showcase of websites, brands, and designs we've built for clients
+          across Japan, the United States, and beyond.</p>
+      </div>
+
+      <!-- Portfolio Tabs -->
+      <div class="portfolio-filters reveal">
+        <button class="pf-btn active" data-pf-tab="websites">Websites</button>
+        <button class="pf-btn" data-pf-tab="branding">Branding</button>
+        <button class="pf-btn" data-pf-tab="logos">Logos</button>
+      </div>
+
+      <!-- ── Tab: Websites ── -->
+      <div class="pf-panel active" id="pf-websites">
+        <div class="portfolio-grid">
+
+          <!-- Project 1 -->
+          <div class="portfolio-item reveal-scale delay-1">
+            <div class="portfolio-card glass-card">
+              <div class="portfolio-thumb">
+                <img src="images/siddique Jp.jpg" alt="Siddique JP Restaurant" />
+                <div class="pv-tag">WordPress</div>
+              </div>
+              <div class="portfolio-info">
+                <div class="pi-category">Restaurant Website</div>
+                <h3 class="pi-title">Siddique JP Restaurant</h3>
+                <p class="pi-desc">A custom WordPress website for a Japan-based restaurant — built for ambiance,
+                  bookings, and global reach.</p>
+                <div class="pi-tags">
+                  <span>WordPress</span><span>Restaurant</span><span>Japan</span>
+                </div>
+                <a href="https://siddique.co.jp/" target="_blank" class="pi-link">Visit Site →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="portfolio-item reveal-scale delay-2">
+            <div class="portfolio-card glass-card">
+              <div class="portfolio-thumb">
+                <img src="images/headmountain.jpg" alt="Head Mountain" />
+                <div class="pv-tag">WooCommerce</div>
+              </div>
+              <div class="portfolio-info">
+                <div class="pi-category">eCommerce Store</div>
+                <h3 class="pi-title">Head Mountain</h3>
+                <p class="pi-desc">A high-converting store for a US clothing brand — bold design meets seamless checkout
+                  experience.</p>
+                <div class="pi-tags">
+                  <span>WooCommerce</span><span>Clothing</span><span>United States</span>
+                </div>
+                <a href="https://headmountain.com/" target="_blank" class="pi-link">Visit Site →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="portfolio-item reveal-scale delay-3">
+            <div class="portfolio-card glass-card">
+              <div class="portfolio-thumb">
+                <img src="images/washintrading.jpg" alt="Washin Trading" />
+                <div class="pv-tag">WordPress</div>
+              </div>
+              <div class="portfolio-info">
+                <div class="pi-category">Company Website</div>
+                <h3 class="pi-title">Washin Trading</h3>
+                <p class="pi-desc">A professional business website for a Japan-Pakistan trading company — built for
+                  trust and global credibility.</p>
+                <div class="pi-tags">
+                  <span>WordPress</span><span>Business</span><span>Japan</span>
+                </div>
+                <a href="https://www.washintrading.com/" target="_blank" class="pi-link">Visit Site →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="portfolio-item reveal-scale delay-1">
+            <div class="portfolio-card glass-card">
+              <div class="portfolio-thumb">
+                <img src="images/halalstore.jpg" alt="Halal Store" />
+                <div class="pv-tag">WooCommerce</div>
+              </div>
+              <div class="portfolio-info">
+                <div class="pi-category">eCommerce Store</div>
+                <h3 class="pi-title">Halal Store</h3>
+                <p class="pi-desc">A complete eCommerce redesign for a Japanese Halal food store — upgraded look, feel,
+                  and functionality.</p>
+                <div class="pi-tags">
+                  <span>WooCommerce</span><span>eCommerce</span><span>Japan</span>
+                </div>
+                <a href="https://halalstore.co.jp/" target="_blank" class="pi-link">Visit Site →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="portfolio-item reveal-scale delay-2">
+            <div class="portfolio-card glass-card">
+              <div class="portfolio-thumb">
+                <img src="images/bath-tec1.jpg" alt="Bath Tec" />
+                <div class="pv-tag">WordPress</div>
+              </div>
+              <div class="portfolio-info">
+                <div class="pi-category">Service Business Website</div>
+                <h3 class="pi-title">Bath Tec</h3>
+                <p class="pi-desc">A sleek WordPress website for a bathroom renovation and tiling company — clean,
+                  professional, and conversion-focused.</p>
+                <div class="pi-tags">
+                  <span>WordPress</span><span>Home Services</span><span>Renovation</span>
+                </div>
+                <a href="#" target="_blank" class="pi-link">Visit Site →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="portfolio-item reveal-scale delay-3">
+            <div class="portfolio-card glass-card">
+              <div class="portfolio-thumb">
+                <img src="images/DyscoverKyrgyz.jpg" alt="Dyscovery Kyrgyz Republic" />
+                <div class="pv-tag">WordPress</div>
+              </div>
+              <div class="portfolio-info">
+                <div class="pi-category">Travel & Tourism Website</div>
+                <h3 class="pi-title">Dyscovery Kyrgyz Republic</h3>
+                <p class="pi-desc">A vibrant travel website showcasing the landscapes and adventures of Kyrgyzstan —
+                  designed to inspire and convert tourists.</p>
+                <div class="pi-tags">
+                  <span>WordPress</span><span>Travel</span><span>Kyrgyzstan</span>
+                </div>
+                <a href="#" target="_blank" class="pi-link">Visit Site →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /pf-websites -->
+
+      <!-- ── Tab: Branding ── -->
+      <div class="pf-panel" id="pf-branding">
+        <div class="pf-image-grid" id="brandingGrid">
+
+          <!-- T-Shirts -->
+          <div class="pf-img-item">
+            <div class="pf-img-label">T-Shirt Design</div>
+            <img src="images/Tshirt/Shirt 1.jpg" alt="T-Shirt Design 1" />
+          </div>
+          <div class="pf-img-item">
+            <div class="pf-img-label">T-Shirt Design</div>
+            <img src="images/Tshirt/Shirt 2.jpg" alt="T-Shirt Design 2" />
+          </div>
+          <div class="pf-img-item">
+            <div class="pf-img-label">T-Shirt Design</div>
+            <img src="images/Tshirt/5-11-25-(2).png" alt="T-Shirt Design 3" />
+          </div>
+          <div class="pf-img-item">
+            <div class="pf-img-label">T-Shirt Design</div>
+            <img src="images/Tshirt/5-12-25.png" alt="T-Shirt Design 4" />
+          </div>
+          <div class="pf-img-item">
+            <div class="pf-img-label">T-Shirt Design (Front)</div>
+            <img src="images/Tshirt/Front-png.png" alt="T-Shirt Front" />
+          </div>
+          <div class="pf-img-item">
+            <div class="pf-img-label">T-Shirt Design (Back)</div>
+            <img src="images/Tshirt/Back-png.png" alt="T-Shirt Back" />
+          </div>
+          <div class="pf-img-item">
+            <div class="pf-img-label">T-Shirt Design</div>
+            <img src="images/Tshirt/JPG.jpg" alt="T-Shirt Design 5" />
+          </div>
+
+          <!-- Business Cards -->
+          <div class="pf-img-item">
+            <div class="pf-img-label">Business Card (Front)</div>
+            <img src="images/business cards/PPA Business card front-01.png" alt="Business Card Front" />
+          </div>
+          <div class="pf-img-item">
+            <div class="pf-img-label">Business Card (Back)</div>
+            <img src="images/business cards/PPA Business card back-01.png" alt="Business Card Back" />
+          </div>
+
+        </div>
+      </div><!-- /pf-branding -->
+
+      <!-- ── Tab: Logos ── -->
+      <div class="pf-panel" id="pf-logos">
+        <div class="pf-image-grid pf-image-grid--logos" id="logosGrid">
+
+          <div class="pf-img-item">
+            <img src="images/logo/FS2.jpg" alt="Logo Design 1" />
+          </div>
+          <div class="pf-img-item">
+            <img src="images/logo/FS3.jpg" alt="Logo Design 2" />
+          </div>
+          <div class="pf-img-item">
+            <img src="images/logo/Navy Blue and Dark Grey.png" alt="Logo Design 3" />
+          </div>
+          <div class="pf-img-item">
+            <img src="images/logo/client-approval.jpg" alt="Logo Client Approval" />
+          </div>
+
+          <div class="pf-img-item pf-img-item--dark">
+            <img src="images/logo/logo-with-text-black.png" alt="Logo with Text (Black)" />
+          </div>
+          <div class="pf-img-item">
+            <img src="images/logo/logo-with-text-white.png" alt="Logo with Text (White)" />
+          </div>
+          <div class="pf-img-item">
+            <img src="images/logo/new design.png" alt="New Logo Design" />
+          </div>
+          <div class="pf-img-item">
+            <img src="images/logo/new-design.png" alt="New Logo Design Alt" />
+          </div>
+
+        </div>
+      </div><!-- /pf-logos -->
+
+      <div style="text-align:center;margin-top:48px;" class="reveal">
+        <a href="#contact" class="btn btn-primary">Start Your Project ✦</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ══════════════ PRICING PREVIEW ══════════════ -->
+  <section id="pricing-preview">
+    <div class="container">
+      <div class="pricing-label">
+        <div class="section-label reveal"></div>
+        <h2 class="section-title reveal delay-1">Simple, <span>Clear Packages</span></h2>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="pricing-tabs reveal">
+        <button class="pricing-tab active" data-tab="web">Web Development</button>
+        <button class="pricing-tab" data-tab="brand">Brand Identity</button>
+        <button class="pricing-tab" data-tab="social">Social Media</button>
+      </div>
+
+      <div class="pricing-panels">
+        <!-- Web Dev Pricing -->
+        <div class="pricing-panel active" id="tab-web">
+          <div class="glass-card pricing-card reveal-scale delay-1">
+            <div class="pricing-tier">Standard</div>
+
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li><span class="check">✦</span> 4–5 pages (Home, About, Services, Contact)</li>
+              <li><span class="check">✦</span> Mobile responsive design</li>
+              <li><span class="check">✦</span> Basic theme setup</li>
+              <li><span class="check">✦</span> Contact form integration</li>
+              <li><span class="check">✦</span> 1 round of revisions</li>
+            </ul>
+            <a href="#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+          </div>
+
+          <div class="glass-card pricing-card featured reveal-scale delay-2">
+            <div class="featured-badge">Most Popular</div>
+            <div class="pricing-tier">Gold</div>
+
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li><span class="check">✦</span> Up to 8 custom pages</li>
+              <li><span class="check">✦</span> Fully custom design</li>
+              <li><span class="check">✦</span> Blog setup & integration</li>
+              <li><span class="check">✦</span> Mobile responsive design</li>
+              <li><span class="check">✦</span> 2 weeks post-launch support</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary pricing-cta">Get Started ✦</a>
+          </div>
+
+          <div class="glass-card pricing-card reveal-scale delay-3">
+            <div class="pricing-tier">Premium</div>
+
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li><span class="check">✦</span> 8–12 fully custom pages</li>
+              <li><span class="check">✦</span> Advanced features (Booking, Memberships)</li>
+              <li><span class="check">✦</span> eCommerce + up to 10 products</li>
+              <li><span class="check">✦</span> On-page SEO & performance setup</li>
+              <li><span class="check">✦</span> 1 month post-launch support</li>
+            </ul>
+            <a href="#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+          </div>
+        </div>
+
+        <!-- Brand Identity Pricing -->
+        <div class="pricing-panel" id="tab-brand">
+          <div class="glass-card pricing-card reveal-scale delay-1">
+            <div class="pricing-tier">Standard</div>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li><span class="check">✦</span> Logo design (2 initial concepts)</li>
+              <li><span class="check">✦</span> Unlimited revisions</li>
+              <li><span class="check">✦</span> Custom color palette</li>
+              <li><span class="check">✦</span> Basic branding fonts</li>
+            </ul>
+            <a href="#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+          </div>
+          <div class="glass-card pricing-card featured reveal-scale delay-2">
+            <div class="featured-badge">Best Value</div>
+            <div class="pricing-tier">Gold</div>
+
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li><span class="check">✦</span> Multiple logo concepts</li>
+              <li><span class="check">✦</span> Branding kits (T-shirts, Caps)</li>
+              <li><span class="check">✦</span> Color palette & typography guide</li>
+              <li><span class="check">✦</span> Source files included</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary pricing-cta">Get Started ✦</a>
+          </div>
+          <div class="glass-card pricing-card reveal-scale delay-3">
+            <div class="pricing-tier">Premium</div>
+
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li><span class="check">✦</span> Full branding package</li>
+              <li><span class="check">✦</span> Logo, Kits, Business Cards, Letterheads</li>
+              <li><span class="check">✦</span> 5 custom kit designs</li>
+              <li><span class="check">✦</span> Brand guidelines document</li>
+            </ul>
+            <a href="#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+          </div>
+        </div>
+
+        <!-- Social Media Pricing -->
+        <div class="pricing-panel" id="tab-social">
+          <div class="glass-card pricing-card reveal-scale delay-1">
+            <div class="pricing-tier">Standard</div>
+
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li><span class="check">✦</span> 5 custom social media post designs</li>
+              <li><span class="check">✦</span> 2 platforms covered</li>
+              <li><span class="check">✦</span> Basic graphics & branding</li>
+            </ul>
+            <a href="#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+          </div>
+          <div class="glass-card pricing-card featured reveal-scale delay-2">
+            <div class="featured-badge">Popular</div>
+            <div class="pricing-tier">Gold</div>
+
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li><span class="check">✦</span> 10 custom social media post designs</li>
+              <li><span class="check">✦</span> 2 platforms covered</li>
+              <li><span class="check">✦</span> Custom graphics & branding</li>
+              <li><span class="check">✦</span> Source files included</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary pricing-cta">Get Started ✦</a>
+          </div>
+          <div class="glass-card pricing-card reveal-scale delay-3">
+            <div class="pricing-tier">Premium</div>
+
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li><span class="check">✦</span> 20 custom post designs monthly</li>
+              <li><span class="check">✦</span> 3 platforms covered</li>
+              <li><span class="check">✦</span> Custom graphics + captions</li>
+              <li><span class="check">✦</span> Monthly content calendar</li>
+            </ul>
+            <a href="#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ TEAM ══════════════ -->
+  <section id="team">
+    <div class="container">
+      <div class="team-header">
+        <div class="section-label reveal">The People</div>
+        <h2 class="section-title reveal delay-1">The <span>Three Friends</span></h2>
+        <p class="section-subtitle reveal delay-2">Three friends, three skill sets — one shared goal of building great
+          digital experiences for clients around the world.</p>
+      </div>
+
+      <div class="team-grid team-grid-3">
+        <div class="glass-card team-card reveal-scale delay-1">
+          <div class="team-avatar"><img src="images/oneeb.jpeg" alt="Oneeb Baig" /></div>
+          <h3 class="team-name">Oneeb Baig</h3>
+
+          <p class="team-bio">Versatile Full Stack Developer focused on WordPress, responsive web apps, custom themes,
+            performance optimization, and delivering reliable, user-friendly digital solutions.</p>
+          <div class="team-socials">
+            <a href="mailto:codart.sol@gmail.com" class="team-social-btn" title="Email">✉</a>
+            <a href="https://wa.me/923344073841" class="team-social-btn" title="WhatsApp" target="_blank">💬</a>
+          </div>
+        </div>
+
+        <div class="glass-card team-card reveal-scale delay-2">
+          <div class="team-avatar"><img src="images/anas.jpeg" alt="Anas Butt" /></div>
+          <h3 class="team-name">Anas Butt</h3>
+
+          <p class="team-bio">Full Stack Developer specialized in WordPress and plugin development, with a creative edge
+            in designing logos, banners, shirts, business cards, and complete digital branding solutions for businesses.
+          </p>
+          <div class="team-socials">
+            <a href="mailto:codart.sol@gmail.com" class="team-social-btn" title="Email">✉</a>
+            <a href="https://wa.me/923045223837" class="team-social-btn" title="WhatsApp" target="_blank">💬</a>
+          </div>
+        </div>
+
+        <div class="glass-card team-card reveal-scale delay-3">
+          <div class="team-avatar"><img src="images/hassan.jpeg" alt="Hassan Razzaq" /></div>
+          <h3 class="team-name">Hassan Razzaq</h3>
+
+          <p class="team-bio">Technical backbone of the team — transforms complex requirements into elegant, scalable
+            solutions. Expert at bridging design and development seamlessly.</p>
+          <div class="team-socials">
+            <a href="mailto:codart.sol@gmail.com" class="team-social-btn" title="Email">✉</a>
+            <a href="https://wa.me/923104919198" class="team-social-btn" title="WhatsApp" target="_blank">💬</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ TESTIMONIALS ══════════════ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <div class="section-label reveal">Social Proof</div>
+        <h2 class="section-title reveal delay-1">What Our <span>Clients Say</span></h2>
+        <p class="section-subtitle reveal delay-2">Trusted by businesses across Japan, the United States, and beyond.
+          Here's what they think about working with CODART.</p>
+      </div>
+
+      <div class="testimonials-carousel reveal">
+        <div class="testimonials-track" id="testimonialsTrack">
+
+          <div class="testimonial-slide">
+            <div class="glass-card testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">CODART built our restaurant website on WordPress — it's been running
+                flawlessly ever since. They delivered within the timeline and every single requirement was fulfilled.
+                Highly recommended!</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">SJ</div>
+                <div class="testimonial-info">
+                  <strong>Siddique JP Restaurant</strong>
+                  <span>Restaurant Website · Japan</span>
+                </div>
+                <div class="testimonial-stars">★★★★★</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="glass-card testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">I was launching a clothing brand in the United States and CODART developed an
+                eCommerce website that truly exceeded my expectations. The work they delivered was simply amazing.
+                Really recommended!</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">HM</div>
+                <div class="testimonial-info">
+                  <strong>Head Mountain</strong>
+                  <span>eCommerce Store · United States</span>
+                </div>
+                <div class="testimonial-stars">★★★★★</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="glass-card testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">Hi! Narley here. Want to give feedback to CODART for such amazing t-shirt
+                designs for my business. People loved the designs so much — made a lot of sales. Keep it UP!</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">NL</div>
+                <div class="testimonial-info">
+                  <strong>Narley</strong>
+                  <span>T-shirt Designs · Branding</span>
+                </div>
+                <div class="testimonial-stars">★★★★★</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="glass-card testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">Washin Trading is a Japan-based import company. CODART helped us build a
+                professional company website that perfectly represents our business to Japanese clients. Great work!</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">WT</div>
+                <div class="testimonial-info">
+                  <strong>Washin Trading</strong>
+                  <span>Company Website · Japan</span>
+                </div>
+                <div class="testimonial-stars">★★★★★</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="glass-card testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">We had an eCommerce store in Japan but the old website was underwhelming.
+                CODART upgraded it to a much better appearance and functionality. Their work is genuinely impressive!
+              </p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">HS</div>
+                <div class="testimonial-info">
+                  <strong>Halal Store</strong>
+                  <span>eCommerce Store · Japan</span>
+                </div>
+                <div class="testimonial-stars">★★★★★</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="testimonials-controls">
+        <button class="t-btn" id="tPrev" aria-label="Previous">&#8592;</button>
+        <div class="t-dots" id="tDots">
+          <button class="t-dot active" data-index="0"></button>
+          <button class="t-dot" data-index="1"></button>
+          <button class="t-dot" data-index="2"></button>
+          <button class="t-dot" data-index="3"></button>
+          <button class="t-dot" data-index="4"></button>
+        </div>
+        <button class="t-btn" id="tNext" aria-label="Next">&#8594;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CONTACT ══════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <div class="section-label">Get In Touch</div>
+          <h2 class="section-title">Let's Build <span>Something Great</span></h2>
+          <p class="section-subtitle">Ready to elevate your brand? Drop us a message and we'll get back to you within 24
+            hours.</p>
+
+          <div class="contact-info-cards">
+            <div class="glass-card contact-info-card">
+              <div class="contact-icon">📍</div>
+              <div>
+                <div class="contact-detail-label">Based In</div>
+                <div class="contact-detail-value">Lahore, Pakistan<br><span
+                    style="font-size:0.82rem;opacity:0.7;">Available worldwide — we work remotely</span></div>
+              </div>
+            </div>
+            <div class="glass-card contact-info-card">
+              <div class="contact-icon">📞</div>
+              <div>
+                <div class="contact-detail-label">Call Us</div>
+                <div class="contact-detail-value">
+                  <a href="tel:+923344073841" style="color:var(--text-secondary);text-decoration:none;">+92 334
+                    4073841</a><br>
+                  <a href="tel:+923045223837" style="color:var(--text-secondary);text-decoration:none;">+92 304
+                    5223837</a>
+                </div>
+              </div>
+            </div>
+            <div class="glass-card contact-info-card">
+              <div class="contact-icon">✉</div>
+              <div>
+                <div class="contact-detail-label">Email Us</div>
+                <div class="contact-detail-value">
+                  <a href="mailto:codart.sol@gmail.com"
+                    style="color:var(--text-secondary);text-decoration:none;">codart.sol@gmail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal-right">
+          <div class="glass-card" style="padding: 40px 36px;">
+            <h3 style="font-size:1.4rem;font-weight:700;margin-bottom:8px;">Send a Message</h3>
+            <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:32px;">Tell us about your project and
+              we'll craft a custom plan just for you.</p>
+
+            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" placeholder="John" required />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" placeholder="Doe" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="john@company.com" required />
+              </div>
+              <div class="form-group">
+                <label for="service">Service Interested In</label>
+                <select id="service" required>
+                  <option value="" disabled selected>Select a service…</option>
+                  <option value="web">Web Development</option>
+                  <option value="brand">Logo & Brand Identity</option>
+                  <option value="social">Social Media Design</option>
+                  <option value="bundle">Full Bundle (All Services)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" placeholder="Tell us about your project, timeline, and budget…"
+                  required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" id="submitBtn">
+                Send Message ✦
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#hero" class="footer-logo">COD<span>ART</span></a>
+        <p class="footer-tagline">Building digital solutions · Designing brand identities · Growing businesses</p>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#pricing-preview">Pricing</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#testimonials">Clients</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="footer-divider"></div>
+        <div class="footer-bottom">
+          <span>© 2026 CODART . All Rights Reserved.
+
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // ── EmailJS Configuration ──────────────────────────────
+    // STEP 1: Sign up at https://www.emailjs.com (free — 200 emails/month)
+    // STEP 2: Add a Gmail service → copy the Service ID below
+    // STEP 3: Create an email template → copy the Template ID below
+    // STEP 4: Go to Account > API Keys → copy your Public Key below
+    (function () {
+      emailjs.init("gngxfGJxQYO0qI1DJ"); // 🔑 Replace with your EmailJS Public Key
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>

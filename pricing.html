@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing — CODART ™</title>
+    <meta name="description"
+        content="Transparent, affordable pricing for web development, logo & brand identity, and social media design services from CODART ™." />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✦</text></svg>" />
+    <style>
+        /* Pricing-page specific overrides */
+        .pricing-page-hero {
+            padding: calc(var(--nav-height) + 80px) 0 80px;
+            background: var(--bg-secondary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-page-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(201, 162, 39, 0.08);
+            filter: blur(100px);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .pricing-category-section {
+            padding: 80px 0;
+        }
+
+        .pricing-category-section:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        .category-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .category-label::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .category-title {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .category-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin: 0 auto 56px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .compare-note {
+            text-align: center;
+            margin-top: 60px;
+            padding: 32px;
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            background: rgba(201, 162, 39, 0.04);
+        }
+
+        .compare-note p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Noise Overlay -->
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-logo">COD<span>ART</span> ™</div>
+        <div class="loader-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo">COD<span>ART</span> ™</a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#hero">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="pricing.html" class="active">Pricing</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="index.html#testimonials">Clients</a></li>
+                    <li><a href="index.html#contact" class="nav-cta">Get a Quote</a></li>
+                </ul>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#hero" onclick="closeMobile()">Home</a>
+        <a href="index.html#about" onclick="closeMobile()">About</a>
+        <a href="index.html#services" onclick="closeMobile()">Services</a>
+        <a href="pricing.html" onclick="closeMobile()">Pricing</a>
+        <a href="index.html#team" onclick="closeMobile()">Team</a>
+        <a href="index.html#contact" class="nav-cta" onclick="closeMobile()">Get a Quote →</a>
+    </div>
+
+    <!-- Hero -->
+    <div class="pricing-page-hero">
+        <div class="container" style="position:relative;z-index:2;">
+            <div class="section-label reveal" style="justify-content:center;">What It Costs</div>
+            <h1 class="section-title reveal delay-1" style="text-align:center;">Simple, <span>Transparent Pricing</span>
+            </h1>
+            <p class="section-subtitle reveal delay-2" style="margin:0 auto;text-align:center;">No hidden fees, no
+                surprises. Choose the right plan for your business and let's build something remarkable together.</p>
+        </div>
+    </div>
+
+    <!-- ══ Web Development Pricing ══ -->
+    <section class="pricing-category-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <div class="category-label reveal">Service 01</div>
+                <h2 class="category-title reveal delay-1">🌐 Website <span class="gold-text">Development</span></h2>
+                <p class="category-subtitle reveal delay-2">WordPress & Shopify websites built for performance,
+                    conversions, and growth.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Standard -->
+                <div class="glass-card pricing-card reveal-scale delay-1">
+                    <div class="pricing-tier">Standard</div>
+                    <div class="pricing-price"><sup>€</sup>300</div>
+                    <div class="pricing-period">one-time payment</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✦</span> 4–5 pages (Home, About, Services, Contact)</li>
+                        <li><span class="check">✦</span> Mobile responsive design</li>
+                        <li><span class="check">✦</span> Basic theme setup &amp; customization</li>
+                        <li><span class="check">✦</span> Contact form integration</li>
+                        <li><span class="check">✦</span> 1 round of revisions</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+                </div>
+
+                <!-- Gold (Featured) -->
+                <div class="glass-card pricing-card featured reveal-scale delay-2">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="pricing-tier">Gold</div>
+                    <div class="pricing-price"><sup>€</sup>500</div>
+                    <div class="pricing-period">one-time payment</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✦</span> Up to 8 fully custom pages</li>
+                        <li><span class="check">✦</span> Premium custom design</li>
+                        <li><span class="check">✦</span> Blog setup &amp; integration</li>
+                        <li><span class="check">✦</span> Mobile-first responsive design</li>
+                        <li><span class="check">✦</span> 2 weeks post-launch support</li>
+                        <li><span class="check">✦</span> Speed optimization</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-primary pricing-cta">Get Started ✦</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="glass-card pricing-card reveal-scale delay-3">
+                    <div class="pricing-tier">Premium</div>
+                    <div class="pricing-price"><sup>€</sup>800</div>
+                    <div class="pricing-period">one-time payment</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✦</span> 8–12 fully custom pages</li>
+                        <li><span class="check">✦</span> Advanced features (Booking, Memberships)</li>
+                        <li><span class="check">✦</span> eCommerce + up to 20 products</li>
+                        <li><span class="check">✦</span> On-page SEO &amp; performance setup</li>
+                        <li><span class="check">✦</span> Regular backups configured</li>
+                        <li><span class="check">✦</span> 1 month post-launch support</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ Brand Identity Pricing ══ -->
+    <section class="pricing-category-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <div class="category-label reveal">Service 02</div>
+                <h2 class="category-title reveal delay-1">✦ Brand <span class="gold-text">Identity</span></h2>
+                <p class="category-subtitle reveal delay-2">Logos, branding kits, and visual identities that make your
+                    business unforgettable.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="glass-card pricing-card reveal-scale delay-1">
+                    <div class="pricing-tier">Standard</div>
+                    <div class="pricing-price"><sup>€</sup>100</div>
+                    <div class="pricing-period">one-time payment</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✦</span> Logo design (2 initial concepts)</li>
+                        <li><span class="check">✦</span> Unlimited revisions</li>
+                        <li><span class="check">✦</span> Custom color palette</li>
+                        <li><span class="check">✦</span> Basic brand fonts</li>
+                        <li><span class="check">✦</span> PNG &amp; SVG source files</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+                </div>
+
+                <div class="glass-card pricing-card featured reveal-scale delay-2">
+                    <div class="featured-badge">Best Value</div>
+                    <div class="pricing-tier">Gold</div>
+                    <div class="pricing-price"><sup>€</sup>150</div>
+                    <div class="pricing-period">one-time payment</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✦</span> Multiple logo concepts</li>
+                        <li><span class="check">✦</span> Branding kits (T-shirts &amp; Caps)</li>
+                        <li><span class="check">✦</span> Color palette + typography guide</li>
+                        <li><span class="check">✦</span> All source files included</li>
+                        <li><span class="check">✦</span> Priority turnaround</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-primary pricing-cta">Get Started ✦</a>
+                </div>
+
+                <div class="glass-card pricing-card reveal-scale delay-3">
+                    <div class="pricing-tier">Premium</div>
+                    <div class="pricing-price"><sup>€</sup>200</div>
+                    <div class="pricing-period">one-time payment</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✦</span> Full branding package</li>
+                        <li><span class="check">✦</span> Logo + Kits + Business Cards + Letterheads</li>
+                        <li><span class="check">✦</span> 5 custom kit designs</li>
+                        <li><span class="check">✦</span> Brand guidelines document</li>
+                        <li><span class="check">✦</span> Unlimited revisions</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ Social Media Pricing ══ -->
+    <section class="pricing-category-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <div class="category-label reveal">Service 03</div>
+                <h2 class="category-title reveal delay-1">📱 Social <span class="gold-text">Media Design</span></h2>
+                <p class="category-subtitle reveal delay-2">Branded content that stops the scroll and grows your
+                    audience on every platform.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="glass-card pricing-card reveal-scale delay-1">
+                    <div class="pricing-tier">Standard</div>
+                    <div class="pricing-price"><sup>€</sup>100</div>
+                    <div class="pricing-period">one-time payment</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✦</span> 5 custom post designs</li>
+                        <li><span class="check">✦</span> 2 platforms (e.g. IG + FB)</li>
+                        <li><span class="check">✦</span> Basic branded graphics</li>
+                        <li><span class="check">✦</span> 1 revision per design</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+                </div>
+
+                <div class="glass-card pricing-card featured reveal-scale delay-2">
+                    <div class="featured-badge">Popular</div>
+                    <div class="pricing-tier">Gold</div>
+                    <div class="pricing-price"><sup>€</sup>150</div>
+                    <div class="pricing-period">one-time payment</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✦</span> 10 custom post designs</li>
+                        <li><span class="check">✦</span> 2 platforms covered</li>
+                        <li><span class="check">✦</span> Custom branded graphics</li>
+                        <li><span class="check">✦</span> Source files included</li>
+                        <li><span class="check">✦</span> 2 revisions per design</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-primary pricing-cta">Get Started ✦</a>
+                </div>
+
+                <div class="glass-card pricing-card reveal-scale delay-3">
+                    <div class="pricing-tier">Premium</div>
+                    <div class="pricing-price"><sup>€</sup>250</div>
+                    <div class="pricing-period">per month</div>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li><span class="check">✦</span> 20 custom post designs monthly</li>
+                        <li><span class="check">✦</span> 3 platforms (IG, FB, LinkedIn)</li>
+                        <li><span class="check">✦</span> Custom graphics + captions</li>
+                        <li><span class="check">✦</span> Monthly content calendar</li>
+                        <li><span class="check">✦</span> Unlimited revisions</li>
+                    </ul>
+                    <a href="index.html#contact" class="btn btn-gold-outline pricing-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Compare / CTA Note -->
+            <div class="compare-note reveal">
+                <p>Not sure which package is right for you? We offer free 30-minute consultations to help you choose.
+                    All prices are in EUR and can be adjusted for custom requirements.</p>
+                <a href="index.html#contact" class="btn btn-primary">Book a Free Consultation ✦</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <a href="index.html" class="footer-logo">COD<span>ART</span> ™</a>
+                <p class="footer-tagline">Building digital solutions · Designing brand identities · Growing businesses
+                </p>
+                <ul class="footer-links">
+                    <li><a href="index.html#hero">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="footer-divider"></div>
+                <div class="footer-bottom">
+                    <span>© 2025 CODART ™. All Rights Reserved. Made with</span>
+                    <span class="heart">♥</span>
+                    <span>in Lahore, Pakistan.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

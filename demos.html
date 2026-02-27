@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Suite | CodArt Premium Templates</title>
+    <meta name="description"
+        content="Explore CodArt's premium website demo templates — fully custom designs ready for any local business." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ── Variables ── */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-color: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --gold: #c9a227;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
+        }
+
+        /* ── Top Bar ── */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-bar-brand {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .top-bar-brand span {
+            color: var(--accent-color);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 6px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* ── Page Layout ── */
+        .dashboard-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 32px 80px;
+            text-align: center;
+        }
+
+        /* ── Header ── */
+        .dash-header {
+            margin-bottom: 64px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .logo span {
+            display: block;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            font-weight: 400;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            margin-top: -4px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ── Grid ── */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            margin-bottom: 60px;
+        }
+
+        /* ── Card ── */
+        .demo-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(12px);
+            text-align: left;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .card-image {
+            height: 210px;
+            background-size: cover;
+            background-position: center top;
+            position: relative;
+        }
+
+        .law-image {
+            background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800');
+        }
+
+        .beauty-image {
+            background-image: url('https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&q=80&w=800');
+        }
+
+        .home-service-image {
+            background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800');
+        }
+
+        .medical-image {
+            background-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800');
+        }
+
+        .real-estate-image {
+            background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800');
+        }
+
+        .construction-image {
+            background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800');
+        }
+
+        /* Coming soon overlay on card image */
+        .card-image.coming-soon-img::after {
+            content: 'COMING SOON';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(99, 102, 241, 0.85);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            padding: 4px 10px;
+            border-radius: 50px;
+        }
+
+        .card-content {
+            padding: 28px 28px 32px;
+            position: relative;
+        }
+
+        .icon-wrap {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        .icon-wrap svg {
+            color: white;
+            width: 22px;
+            height: 22px;
+        }
+
+        .card-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .card-content p {
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 24px;
+            font-size: 0.92rem;
+        }
+
+        /* ── Buttons ── */
+        .btn-demo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: filter 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-demo:hover {
+            filter: brightness(1.15);
+            transform: translateY(-1px);
+        }
+
+        .btn-demo.coming-soon {
+            background: rgba(99, 102, 241, 0.12);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            cursor: not-allowed;
+            pointer-events: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ── Footer ── */
+        .dash-footer {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .top-bar {
+                padding: 12px 20px;
+            }
+
+            .dashboard-container {
+                padding: 40px 20px 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top navigation bar -->
+    <div class="top-bar">
+        <a href="index.html" class="top-bar-brand">COD<span>ART</span> ™</a>
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+    </div>
+
+    <div class="dashboard-container">
+
+        <header class="dash-header">
+            <h1 class="logo">Codart <span>Demo Suite</span></h1>
+            <p class="subtitle">Explore our premium website templates — each one a fully custom demo ready to be
+                tailored for your business.</p>
+        </header>
+
+        <main class="demo-grid">
+
+            <!-- Law Firm Demo -->
+            <div class="demo-card">
+                <div class="card-image law-image"></div>
+                <div class="card-content">
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 3 21 3 21 8"></polyline>
+                            <line x1="4" y1="20" x2="21" y2="3"></line>
+                            <polyline points="21 16 21 21 16 21"></polyline>
+                            <line x1="15" y1="15" x2="21" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>Law Firm</h3>
+                    <p>High-end, trustworthy design for small business, divorce, and immigration attorneys.</p>
+                    <!-- Replace href="#" with the live hosted URL once deployed, and remove class "coming-soon" -->
+                    <a href="https://law-firm-seven-blush.vercel.app/" target="_blank" class="btn-demo">See Demo</a>
+                </div>
+            </div>
+
+            <!-- Beauty Salon Demo -->
+            <div class="demo-card">
+                <div class="card-image beauty-image"></div>
+                <div class="card-content">
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.557 1.522 4.82 3.889 6.115C6 17.66 5 19.915 5 22h14c0-2.085-1-4.34-1.889-5.77C19.478 14.935 21 12.672 21 10.115 21 6.185 16.97 3 12 3z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Beauty Salon &amp; Spa</h3>
+                    <p>Elegant and serene template for premium salons, spas, and wellness centers.</p>
+                    <!-- Replace href="#" with the live hosted URL once deployed, and remove class "coming-soon" -->
+                    <a href="https://beauty-salon-mocha-xi.vercel.app/" target="_blank" class="btn-demo">See Demo</a>
+                </div>
+            </div>
+
+            <!-- Home Service Provider Demo -->
+            <div class="demo-card">
+                <div class="card-image home-service-image"></div>
+                <div class="card-content">
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Home Service Provider</h3>
+                    <p>Professional and trustworthy design for plumbers, electricians, cleaners, and handymen.</p>
+                    <a href="https://home-services-omega.vercel.app/" target="_blank" class="btn-demo">See Demo</a>
+                </div>
+            </div>
+
+            <!-- Medical Center Demo -->
+            <div class="demo-card">
+                <div class="card-image medical-image"></div>
+                <div class="card-content">
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    <h3>Medical Center</h3>
+                    <p>Clean, modern, and calming template for clinics, doctors, dentists, and healthcare providers.</p>
+                    <a href="https://medical-center-lake.vercel.app/" target="_blank" class="btn-demo">See Demo</a>
+                </div>
+            </div>
+
+            <!-- Real Estate Demo -->
+            <div class="demo-card">
+                <div class="card-image real-estate-image"></div>
+                <div class="card-content">
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                            <polyline points="17 2 12 7 7 2"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Real Estate</h3>
+                    <p>Sophisticated property showcase template for agents, agencies, and property developers.</p>
+                    <a href="https://real-estate-one-sooty.vercel.app/" target="_blank" class="btn-demo">See
+                        Demo</a>
+                </div>
+            </div>
+
+            <!-- Construction Demo -->
+            <div class="demo-card">
+                <div class="card-image construction-image"></div>
+                <div class="card-content">
+                    <div class="icon-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <h3>Construction And Renovation</h3>
+                    <p>Bold and authoritative template for contractors, builders, and construction companies.</p>
+                    <a href="https://home-renovation-navy.vercel.app/" target="_blank" class="btn-demo">See Demo</a>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="dash-footer">
+            <p>&copy; 2026 CodArt Digital &mdash; These are just demos. We can build any type of custom website for your
+                business.</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
