@@ -392,19 +392,42 @@ section {
 .nav-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   cursor: pointer;
-  padding: 4px;
+  padding: 0;
   margin-left: auto;
+  width: 42px;
+  height: 42px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: var(--transition);
+  position: relative;
+  z-index: 1001;
+}
+
+.nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(201, 162, 39, 0.4);
+  box-shadow: 0 0 15px rgba(201, 162, 39, 0.2);
 }
 
 .nav-toggle span {
   display: block;
-  width: 24px;
+  width: 20px;
   height: 2px;
-  background: var(--text-primary);
+  background: var(--gold);
   border-radius: 2px;
-  transition: var(--transition-fast);
+  transition: var(--transition);
+}
+
+.nav-toggle.open {
+  border-color: var(--gold);
+  background: rgba(201, 162, 39, 0.05);
 }
 
 .nav-toggle.open span:nth-child(1) {
@@ -413,6 +436,7 @@ section {
 
 .nav-toggle.open span:nth-child(2) {
   opacity: 0;
+  transform: translateX(-10px);
 }
 
 .nav-toggle.open span:nth-child(3) {
