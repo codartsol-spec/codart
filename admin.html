@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>CODART CMS Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0f1e;
+      --card: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #6366f1;
+      --gold: #c9a227;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --font-h: Outfit, sans-serif;
+      --font-b: Inter, sans-serif
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-b);
+      min-height: 100vh;
+      background-image: radial-gradient(circle at 15% 15%, rgba(99, 102, 241, .12) 0%, transparent 50%), radial-gradient(circle at 85% 80%, rgba(201, 162, 39, .07) 0%, transparent 50%)
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-h)
+    }
+
+    input,
+    textarea,
+    select {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-family: var(--font-b);
+      font-size: .9rem;
+      width: 100%;
+      outline: none;
+      transition: border-color .2s
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent)
+    }
+
+    select option {
+      background: #1e293b
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px
+    }
+
+    label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: .04em
+    }
+
+    button {
+      cursor: pointer;
+      font-family: var(--font-b)
+    }
+
+    /* LOGIN */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px
+    }
+
+    .login-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 420px;
+      backdrop-filter: blur(16px);
+      text-align: center
+    }
+
+    .login-logo {
+      font-family: var(--font-h);
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 6px
+    }
+
+    .login-logo span {
+      color: var(--gold)
+    }
+
+    .login-sub {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 32px
+    }
+
+    .login-box input {
+      margin-bottom: 16px;
+      text-align: center;
+      letter-spacing: .08em
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 13px;
+      background: var(--gold);
+      color: #0a0f1e;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: filter .2s
+    }
+
+    .btn-login:hover {
+      filter: brightness(1.1)
+    }
+
+    .login-err {
+      color: var(--danger);
+      font-size: .85rem;
+      margin-top: 12px;
+      min-height: 20px
+    }
+
+    /* ADMIN LAYOUT */
+    #adminScreen {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column
+    }
+
+    .admin-bar {
+      background: rgba(10, 15, 30, .9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100
+    }
+
+    .admin-brand {
+      font-family: var(--font-h);
+      font-size: 1.1rem;
+      font-weight: 800
+    }
+
+    .admin-brand span {
+      color: var(--gold)
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+
+    .btn-sm {
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: .82rem;
+      font-weight: 600;
+      border: none;
+      transition: all .2s
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted)
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--text)
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #0a0f1e
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.1)
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, .15);
+      color: var(--danger);
+      border: 1px solid rgba(239, 68, 68, .3)
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, .25)
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.15)
+    }
+
+    .admin-tabs {
+      display: flex;
+      gap: 2px;
+      padding: 24px 32px 0;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .tab-btn {
+      padding: 10px 22px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 600;
+      border-radius: 10px 10px 0 0;
+      border: 1px solid transparent;
+      border-bottom: none;
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .tab-btn.active {
+      background: var(--card);
+      color: var(--text);
+      border-color: var(--border);
+      border-bottom-color: var(--bg)
+    }
+
+    .admin-content {
+      padding: 32px;
+      flex: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%
+    }
+
+    .tab-panel {
+      display: none
+    }
+
+    .tab-panel.active {
+      display: block
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
+    /* CARDS LIST */
+    .item-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .item-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      transition: border-color .2s
+    }
+
+    .item-card:hover {
+      border-color: rgba(99, 102, 241, .3)
+    }
+
+    .item-info {
+      flex: 1
+    }
+
+    .item-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: .95rem
+    }
+
+    .item-meta {
+      font-size: .8rem;
+      color: var(--muted)
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 2px 9px;
+      border-radius: 50px
+    }
+
+    .status-live {
+      background: rgba(34, 197, 94, .1);
+      color: var(--success)
+    }
+
+    .status-draft {
+      background: rgba(148, 163, 184, .1);
+      color: var(--muted)
+    }
+
+    .status-coming {
+      background: rgba(99, 102, 241, .1);
+      color: #818cf8
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .7);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px
+    }
+
+    .modal-overlay.open {
+      display: flex
+    }
+
+    .modal-box {
+      background: #111827;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color .2s
+    }
+
+    .modal-close:hover {
+      color: var(--text)
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 16px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
+
+    @media(max-width:600px) {
+      .form-row {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border)
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e293b;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: .9rem;
+      font-weight: 500;
+      z-index: 300;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all .3s;
+      max-width: 320px
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1
+    }
+
+    .toast.success {
+      border-color: rgba(34, 197, 94, .4)
+    }
+
+    .toast.error {
+      border-color: rgba(239, 68, 68, .4)
+    }
+
+    /* MENU MANAGER */
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .menu-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .menu-drag {
+      color: var(--muted);
+      font-size: 1.1rem;
+      cursor: grab;
+      user-select: none
+    }
+
+    .menu-toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      cursor: pointer
+    }
+
+    .menu-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .menu-slider {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, .1);
+      border-radius: 50px;
+      transition: background .2s
+    }
+
+    .menu-slider::before {
+      content: "";
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform .2s
+    }
+
+    .menu-toggle input:checked+.menu-slider {
+      background: var(--accent)
+    }
+
+    .menu-toggle input:checked+.menu-slider::before {
+      transform: translateX(20px)
+    }
+
+    .menu-label {
+      flex: 1;
+      font-weight: 600;
+      font-size: .9rem
+    }
+
+    .menu-url {
+      font-size: .78rem;
+      color: var(--muted)
+    }
+
+    /* EMPTY */
+    .empty-box {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted)
+    }
+
+    .empty-box .icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px
+    }
+
+    .empty-box p {
+      font-size: .9rem
+    }
+  </style>
+</head>
+
+<body>
+  <!-- LOGIN -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">COD<span>ART</span></div>
+      <div class="login-sub">Content Management System</div>
+      <input type="text" id="unInput" placeholder="Username"
+        style="margin-bottom:16px;text-align:center;letter-spacing:.08em"
+        onkeydown="if(event.key==='Enter')doLogin()" />
+      <input type="password" id="pwInput" placeholder="Password"
+        onkeydown="if(event.key==='Enter')doLogin()" />
+      <button class="btn-login" onclick="doLogin()">Sign In →</button>
+      <div class="login-err" id="loginErr"></div>
+    </div>
+  </div>
+  <!-- ADMIN -->
+  <div id="adminScreen">
+    <div class="admin-bar">
+      <div class="admin-brand">COD<span>ART</span> CMS &nbsp;<span id="loggedUserBadge" style="font-size:.72rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.06);padding:3px 10px;border-radius:50px;border:1px solid var(--border)"></span></div>
+      <div class="admin-actions">
+        <button class="btn-sm btn-outline" onclick="exportData()">Export JSON</button>
+        <label class="btn-sm btn-outline" style="cursor:pointer">Import JSON<input type="file" accept=".json"
+            style="display:none" onchange="importData(event)" /></label>
+        <button class="btn-sm btn-gold" onclick="saveAll()">💾 Save All</button>
+        <button class="btn-sm btn-outline" onclick="doLogout()">Logout</button>
+      </div>
+    </div>
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="switchTab('menu',this)">🧭 Menu</button>
+      <button class="tab-btn" onclick="switchTab('blogs',this)">📝 Blogs</button>
+      <button class="tab-btn" onclick="switchTab('demos',this)">🎨 Demos</button>
+      <button class="tab-btn" onclick="switchTab('pages',this)">📄 Pages</button>
+    </div>
+    <div class="admin-content">
+      <!-- MENU TAB -->
+      <div class="tab-panel active" id="tab-menu">
+        <div class="section-title"><span>Menu Manager</span><span
+            style="font-size:.8rem;color:var(--muted);font-weight:400">Toggle links on/off. Changes apply to Blog & post
+            pages.</span></div>
+        <div class="menu-list" id="menuList"></div>
+      </div>
+      <!-- BLOGS TAB -->
+      <div class="tab-panel" id="tab-blogs">
+        <div class="section-title"><span>Blog Posts</span><button class="btn-sm btn-primary" onclick="openBlogModal()">+
+            New Post</button></div>
+        <div id="blogList" class="item-list"></div>
+      </div>
+      <!-- DEMOS TAB -->
+      <div class="tab-panel" id="tab-demos">
+        <div class="section-title"><span>Demo Cards</span><button class="btn-sm btn-primary" onclick="openDemoModal()">+
+            New Demo</button></div>
+        <div id="demoList" class="item-list"></div>
+      </div>
+      <!-- PAGES TAB -->
+      <div class="tab-panel" id="tab-pages">
+        <div class="section-title"><span>Pages</span><button class="btn-sm btn-primary" onclick="openPageModal()">+ New
+            Page</button></div>
+        <p style="font-size:.82rem;color:var(--muted);margin-top:-16px;margin-bottom:20px">Create standalone pages.
+          Click <strong style="color:var(--text)">Download</strong> to get the HTML file and place it in your website
+          folder.</p>
+        <div id="pageList" class="item-list"></div>
+      </div>
+    </div>
+  </div>
+  <!-- BLOG MODAL -->
+  <div class="modal-overlay" id="blogModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="blogModalTitle">New Blog Post</div>
+        <button class="modal-close" onclick="closeModal('blogModal')">×</button>
+      </div>
+      <div class="form-grid">
+        <div class="form-group"><label>Post Title *</label><input type="text" id="b-title"
+            placeholder="Enter post title" /></div>
+        <div class="form-row">
+          <div class="form-group"><label>Category *</label><input type="text" id="b-cat"
+              placeholder="e.g. Web Development" /></div>
+          <div class="form-group"><label>Date</label><input type="date" id="b-date" /></div>
+        </div>
+        <div class="form-group"><label>Excerpt (short summary)</label><textarea id="b-excerpt" style="min-height:80px"
+            placeholder="Brief 1-2 sentence summary shown on the blog listing page..."></textarea></div>
+        <div class="form-group"><label>Cover Image URL</label><input type="url" id="b-image"
+            placeholder="https://..." /></div>
+        <div class="form-group"><label>Emoji Icon (fallback if no image)</label><input type="text" id="b-icon"
+            placeholder="e.g. 💻" style="max-width:120px" /></div>
+        <div class="form-group"><label>Full Content (HTML supported)</label><textarea id="b-content"
+            style="min-height:220px" placeholder="<h2>Section Title</h2>&#10;<p>Your paragraph here...</p>"></textarea>
+        </div>
+        <div class="form-group"><label>Status</label>
+          <select id="b-status">
+            <option value="true">Published</option>
+            <option value="false">Draft</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sm btn-outline" onclick="closeModal('blogModal')">Cancel</button>
+        <button class="btn-sm btn-primary" onclick="saveBlogPost()">Save Post</button>
+      </div>
+    </div>
+  </div>
+  <!-- DEMO MODAL -->
+  <div class="modal-overlay" id="demoModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="demoModalTitle">New Demo</div>
+        <button class="modal-close" onclick="closeModal('demoModal')">×</button>
+      </div>
+      <div class="form-grid">
+        <div class="form-group"><label>Demo Name *</label><input type="text" id="d-name" placeholder="e.g. Law Firm" />
+        </div>
+        <div class="form-group"><label>Description *</label><textarea id="d-desc" style="min-height:80px"
+            placeholder="Short description shown on the card..."></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label>Demo Link URL</label><input type="url" id="d-link" placeholder="https://..." />
+          </div>
+          <div class="form-group"><label>Emoji Icon</label><input type="text" id="d-icon" placeholder="e.g. ⚖️" /></div>
+        </div>
+        <div class="form-group"><label>Card Image URL (optional)</label><input type="url" id="d-image"
+            placeholder="https://... (leave blank to use built-in image)" /></div>
+        <div class="form-group"><label>Status</label>
+          <select id="d-status">
+            <option value="live">Live</option>
+            <option value="coming-soon">Coming Soon</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sm btn-outline" onclick="closeModal('demoModal')">Cancel</button>
+        <button class="btn-sm btn-primary" onclick="saveDemoCard()">Save Demo</button>
+      </div>
+    </div>
+  </div>
+  <!-- PAGE MODAL -->
+  <div class="modal-overlay" id="pageModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="pageModalTitle">New Page</div><button class="modal-close"
+          onclick="closeModal('pageModal')">×</button>
+      </div>
+      <div class="form-grid">
+        <div class="form-group"><label>Page Title *</label><input type="text" id="pg-title"
+            placeholder="e.g. About Us" /></div>
+        <div class="form-row">
+          <div class="form-group"><label>Filename * (becomes yourpage.html)</label><input type="text" id="pg-slug"
+              placeholder="about-us" /></div>
+          <div class="form-group"><label>Status</label><select id="pg-status">
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
+            </select></div>
+        </div>
+        <div class="form-group"><label>Meta Description (SEO)</label><input type="text" id="pg-meta"
+            placeholder="Brief description for search engines..." /></div>
+        <div class="form-group"><label>Cover Image URL (optional)</label><input type="url" id="pg-image"
+            placeholder="https://..." /></div>
+        <div class="form-group"><label>Page Content (HTML supported)</label><textarea id="pg-content"
+            style="min-height:260px"
+            placeholder="&lt;h2&gt;Section Heading&lt;/h2&gt;&#10;&lt;p&gt;Your content here...&lt;/p&gt;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer"><button class="btn-sm btn-outline"
+          onclick="closeModal('pageModal')">Cancel</button><button class="btn-sm btn-primary" onclick="savePage()">Save
+          Page</button></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script>
+    // == AUTH ==============================================================
+    var USERS = {
+      'oneeb':  'codart-oneeb@2026',
+      'hassan': 'codart-hassan@2026',
+      'anas':   'codart-anas@2026'
+    };
+
+    function doLogin() {
+      var username = document.getElementById('unInput').value.trim().toLowerCase();
+      var password = document.getElementById('pwInput').value;
+      if (USERS[username] && USERS[username] === password) {
+        document.getElementById('loginScreen').style.display = 'none';
+        var a = document.getElementById('adminScreen');
+        a.style.display = 'flex';
+        a.style.flexDirection = 'column';
+        document.getElementById('loggedUserBadge').textContent =
+          String.fromCodePoint(0x1F464) + ' ' + username.charAt(0).toUpperCase() + username.slice(1);
+        load(); renderAll();
+      } else {
+        document.getElementById('loginErr').textContent = 'Invalid username or password.';
+      }
+    }
+
+    function doLogout() {
+      document.getElementById('adminScreen').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('unInput').value = '';
+      document.getElementById('pwInput').value = '';
+      document.getElementById('loginErr').textContent = '';
+      document.getElementById('loggedUserBadge').textContent = '';
+    }
+    // ======================================================================
+
+    const DEFAULT_MENU = [
+      { id: 'home', label: 'Home', url: 'index.html#hero', visible: true },
+      { id: 'about', label: 'About', url: 'index.html#about', visible: true },
+      { id: 'services', label: 'Services', url: 'index.html#services', visible: true },
+      { id: 'portfolio', label: 'Portfolio', url: 'index.html#portfolio', visible: true },
+      { id: 'packages', label: 'Packages', url: 'index.html#pricing-preview', visible: true },
+      { id: 'team', label: 'Team', url: 'index.html#team', visible: true },
+      { id: 'clients', label: 'Clients', url: 'index.html#testimonials', visible: true },
+      { id: 'blog', label: 'Blog', url: 'blogs.html', visible: true },
+      { id: 'demos', label: 'Demos', url: 'demos.html', visible: true },
+      { id: 'quote', label: 'Get a Quote', url: 'index.html#contact', visible: true }
+    ];
+    const DEFAULT_DEMOS = [
+      { id: 1, name: 'Law Firm', description: 'High-end, trustworthy design for small business, divorce, and immigration attorneys.', link: 'https://law-firm-seven-blush.vercel.app/', status: 'live', imageClass: 'law-image', icon: '⚖️' },
+      { id: 2, name: 'Beauty Salon & Spa', description: 'Elegant and serene template for premium salons, spas, and wellness centers.', link: 'https://beauty-salon-mocha-xi.vercel.app/', status: 'live', imageClass: 'beauty-image', icon: '💆' },
+      { id: 3, name: 'Home Service Provider', description: 'Professional and trustworthy design for plumbers, electricians, cleaners, and handymen.', link: 'https://home-services-omega.vercel.app/', status: 'live', imageClass: 'home-service-image', icon: '🏠' },
+      { id: 4, name: 'Medical Center', description: 'Clean, modern, and calming template for clinics, doctors, dentists, and healthcare providers.', link: 'https://medical-center-lake.vercel.app/', status: 'live', imageClass: 'medical-image', icon: '🏥' },
+      { id: 5, name: 'Real Estate', description: 'Sophisticated property showcase template for agents, agencies, and property developers.', link: 'https://real-estate-one-sooty.vercel.app/', status: 'live', imageClass: 'real-estate-image', icon: '🏢' },
+      { id: 6, name: 'Construction And Renovation', description: 'Bold and authoritative template for contractors, builders, and construction companies.', link: 'https://home-renovation-navy.vercel.app/', status: 'live', imageClass: 'construction-image', icon: '🔨' }
+    ];
+    const DEFAULT_BLOGS = [
+      { id: 1, title: 'Why Your Business Needs a Custom Website (Not Just a Template)', category: 'Web Development', date: '2026-04-10', excerpt: 'Templates are a good starting point, but they rarely convert. Here\'s why investing in a custom-built website pays for itself within months.', image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800', icon: '💻', content: '<h2>Templates vs Custom</h2><p>A template is designed for everyone, which means it\'s optimised for no one. A custom website is built around your specific customers, your specific goals, and your specific brand voice.</p><h2>The Conversion Problem</h2><p>Studies show custom websites outperform template sites by 40-60% in conversion rate.</p>', published: true },
+      { id: 2, title: '5 Logo Design Mistakes That Are Killing Your Brand', category: 'Branding', date: '2026-03-28', excerpt: 'A bad logo does more damage than no logo at all. We break down the five most common logo mistakes and how to fix them.', image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=800', icon: '✦', content: '<h2>Your Logo Is Your First Impression</h2><p>Before a customer reads a single word, they\'ve already formed an opinion based on your logo.</p><h2>Mistake 1: Too Many Colours</h2><p>A strong logo typically uses 1-3 colours maximum.</p>', published: true },
+      { id: 3, title: 'How We Built a Bilingual Restaurant Website for Japan', category: 'Case Study', date: '2026-03-05', excerpt: 'Behind the scenes of building Siddique JP — a multilingual WordPress site for a Japanese restaurant.', image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=800', icon: '🌐', content: '<h2>The Brief</h2><p>Siddique JP is a halal Japanese-Pakistani fusion restaurant in Tokyo needing a bilingual website.</p><h2>The Result</h2><p>Within 3 months of launch, online reservations increased by 35%.</p>', published: true }
+    ];
+    const DEFAULT_PAGES = [];
+
+    let menuData, blogsData, demosData, pagesData, editBlogId = null, editDemoId = null, editPageId = null;
+
+    function load() {
+      menuData = JSON.parse(localStorage.getItem('codart_menu') || 'null') || JSON.parse(JSON.stringify(DEFAULT_MENU));
+      blogsData = JSON.parse(localStorage.getItem('codart_blogs') || 'null') || JSON.parse(JSON.stringify(DEFAULT_BLOGS));
+      demosData = JSON.parse(localStorage.getItem('codart_demos') || 'null') || JSON.parse(JSON.stringify(DEFAULT_DEMOS));
+      pagesData = JSON.parse(localStorage.getItem('codart_pages') || 'null') || JSON.parse(JSON.stringify(DEFAULT_PAGES));
+    }
+
+    // doLogin and doLogout are defined at the top of the script block
+
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + name).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function renderAll() { renderMenu(); renderBlogs(); renderDemos(); renderPages(); }
+
+    function renderMenu() {
+      const list = document.getElementById('menuList');
+      list.innerHTML = menuData.map(item => `
+    <div class="menu-item">
+      <span class="menu-drag">⠿</span>
+      <label class="menu-toggle"><input type="checkbox" ${item.visible ? 'checked' : ''} onchange="toggleMenu('${item.id}',this.checked)"/><span class="menu-slider"></span></label>
+      <div style="flex:1"><div class="menu-label">${item.label}</div><div class="menu-url">${item.url}</div></div>
+    </div>`).join('');
+    }
+
+    function toggleMenu(id, val) {
+      const item = menuData.find(m => m.id === id);
+      if (item) item.visible = val;
+    }
+
+    function renderBlogs() {
+      const list = document.getElementById('blogList');
+      if (!blogsData.length) { list.innerHTML = '<div class="empty-box"><div class="icon">📝</div><p>No blog posts yet. Click "New Post" to add one.</p></div>'; return; }
+      list.innerHTML = blogsData.map(p => `
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-title">${p.title}</div>
+        <div class="item-meta">${p.category} · ${p.date} &nbsp;<span class="status-badge ${p.published ? 'status-live' : 'status-draft'}">${p.published ? 'Published' : 'Draft'}</span></div>
+      </div>
+      <div class="item-actions">
+        <button class="btn-sm btn-outline" onclick="editBlog(${p.id})">Edit</button>
+        <button class="btn-sm btn-danger" onclick="deleteBlog(${p.id})">Delete</button>
+      </div>
+    </div>`).join('');
+    }
+
+    function renderDemos() {
+      const list = document.getElementById('demoList');
+      if (!demosData.length) { list.innerHTML = '<div class="empty-box"><div class="icon">🎨</div><p>No demos yet. Click "New Demo" to add one.</p></div>'; return; }
+      list.innerHTML = demosData.map(d => `
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-title">${d.icon || ''} ${d.name}</div>
+        <div class="item-meta">${d.link || 'No link'} &nbsp;<span class="status-badge ${d.status === 'live' ? 'status-live' : 'status-coming'}">${d.status === 'live' ? 'Live' : 'Coming Soon'}</span></div>
+      </div>
+      <div class="item-actions">
+        <button class="btn-sm btn-outline" onclick="editDemo(${d.id})">Edit</button>
+        <button class="btn-sm btn-danger" onclick="deleteDemo(${d.id})">Delete</button>
+      </div>
+    </div>`).join('');
+    }
+
+    // PAGES
+    function renderPages() {
+      const list = document.getElementById('pageList');
+      if (!pagesData.length) { list.innerHTML = '<div class="empty-box"><div class="icon">📄</div><p>No pages yet. Click "+ New Page" to create one.</p></div>'; return; }
+      list.innerHTML = pagesData.map(p => `
+    <div class="item-card">
+      <div class="item-info">
+        <div class="item-title">${p.title}</div>
+        <div class="item-meta">${p.slug}.html &nbsp;<span class="status-badge ${p.status === 'published' ? 'status-live' : 'status-draft'}">${p.status === 'published' ? 'Published' : 'Draft'}</span></div>
+      </div>
+      <div class="item-actions">
+        <button class="btn-sm btn-outline" onclick="downloadPage(${p.id})">↓ Download</button>
+        <button class="btn-sm btn-outline" onclick="editPage(${p.id})">Edit</button>
+        <button class="btn-sm btn-danger" onclick="deletePage(${p.id})">Delete</button>
+      </div>
+    </div>`).join('');
+    }
+
+    // BLOG MODAL
+    function openBlogModal(id) {
+      editBlogId = id || null;
+      const p = id ? blogsData.find(b => b.id === id) : null;
+      document.getElementById('blogModalTitle').textContent = p ? 'Edit Blog Post' : 'New Blog Post';
+      document.getElementById('b-title').value = p ? p.title : '';
+      document.getElementById('b-cat').value = p ? p.category : '';
+      document.getElementById('b-date').value = p ? p.date : new Date().toISOString().split('T')[0];
+      document.getElementById('b-excerpt').value = p ? p.excerpt : '';
+      document.getElementById('b-image').value = p ? p.image || '' : '';
+      document.getElementById('b-icon').value = p ? p.icon || '' : '';
+      document.getElementById('b-content').value = p ? p.content || '' : '';
+      document.getElementById('b-status').value = p ? (p.published ? 'true' : 'false') : 'true';
+      document.getElementById('blogModal').classList.add('open');
+    }
+    function editBlog(id) { openBlogModal(id); }
+    function deleteBlog(id) { if (confirm('Delete this blog post?')) { blogsData = blogsData.filter(b => b.id !== id); renderBlogs(); showToast('Post deleted', 'success'); } }
+    function saveBlogPost() {
+      const title = document.getElementById('b-title').value.trim();
+      const cat = document.getElementById('b-cat').value.trim();
+      if (!title || !cat) { showToast('Title and Category are required', 'error'); return; }
+      const data = { id: editBlogId || Date.now(), title, category: cat, date: document.getElementById('b-date').value, excerpt: document.getElementById('b-excerpt').value.trim(), image: document.getElementById('b-image').value.trim(), icon: document.getElementById('b-icon').value.trim(), content: document.getElementById('b-content').value, published: document.getElementById('b-status').value === 'true' };
+      if (editBlogId) { const i = blogsData.findIndex(b => b.id === editBlogId); if (i > -1) blogsData[i] = data; }
+      else blogsData.unshift(data);
+      closeModal('blogModal'); renderBlogs(); showToast('Post saved!', 'success');
+    }
+
+    // DEMO MODAL
+    function openDemoModal(id) {
+      editDemoId = id || null;
+      const d = id ? demosData.find(x => x.id === id) : null;
+      document.getElementById('demoModalTitle').textContent = d ? 'Edit Demo' : 'New Demo';
+      document.getElementById('d-name').value = d ? d.name : '';
+      document.getElementById('d-desc').value = d ? d.description : '';
+      document.getElementById('d-link').value = d ? d.link || '' : '';
+      document.getElementById('d-icon').value = d ? d.icon || '' : '';
+      document.getElementById('d-image').value = d ? d.image || '' : '';
+      document.getElementById('d-status').value = d ? d.status : 'live';
+      document.getElementById('demoModal').classList.add('open');
+    }
+    function editDemo(id) { openDemoModal(id); }
+    function deleteDemo(id) { if (confirm('Delete this demo?')) { demosData = demosData.filter(d => d.id !== id); renderDemos(); showToast('Demo deleted', 'success'); } }
+    function saveDemoCard() {
+      const name = document.getElementById('d-name').value.trim();
+      const desc = document.getElementById('d-desc').value.trim();
+      if (!name || !desc) { showToast('Name and Description are required', 'error'); return; }
+      const data = { id: editDemoId || Date.now(), name, description: desc, link: document.getElementById('d-link').value.trim(), icon: document.getElementById('d-icon').value.trim(), image: document.getElementById('d-image').value.trim(), status: document.getElementById('d-status').value };
+      if (editDemoId) { const i = demosData.findIndex(d => d.id === editDemoId); if (i > -1) demosData[i] = data; }
+      else demosData.unshift(data);
+      closeModal('demoModal'); renderDemos(); showToast('Demo saved!', 'success');
+    }
+
+    // PAGE MODAL
+    function openPageModal(id) {
+      editPageId = id || null;
+      const p = id ? pagesData.find(x => x.id === id) : null;
+      document.getElementById('pageModalTitle').textContent = p ? 'Edit Page' : 'New Page';
+      document.getElementById('pg-title').value = p ? p.title : '';
+      document.getElementById('pg-slug').value = p ? p.slug : '';
+      document.getElementById('pg-meta').value = p ? p.metaDesc || '' : '';
+      document.getElementById('pg-image').value = p ? p.image || '' : '';
+      document.getElementById('pg-content').value = p ? p.content || '' : '';
+      document.getElementById('pg-status').value = p ? p.status : 'published';
+      document.getElementById('pageModal').classList.add('open');
+    }
+    function editPage(id) { openPageModal(id); }
+    function deletePage(id) { if (confirm('Delete this page?')) { pagesData = pagesData.filter(p => p.id !== id); renderPages(); showToast('Page deleted', 'success'); } }
+    function savePage() {
+      const title = document.getElementById('pg-title').value.trim();
+      let slug = document.getElementById('pg-slug').value.trim();
+      if (!title) { showToast('Title is required', 'error'); return; }
+      if (!slug) slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      slug = slug.replace(/\.html$/, '');
+      const data = { id: editPageId || Date.now(), title, slug, metaDesc: document.getElementById('pg-meta').value.trim(), image: document.getElementById('pg-image').value.trim(), content: document.getElementById('pg-content').value, status: document.getElementById('pg-status').value };
+      if (editPageId) { const i = pagesData.findIndex(p => p.id === editPageId); if (i > -1) pagesData[i] = data; }
+      else pagesData.unshift(data);
+      closeModal('pageModal'); renderPages(); showToast('Page saved! Click Download to get the HTML file.', 'success');
+    }
+    function downloadPage(id) {
+      const p = pagesData.find(x => x.id === id);
+      if (!p) return;
+      const coverHtml = p.image ? '<img style="width:100%;height:360px;object-fit:cover;border-radius:20px;margin-bottom:40px;border:1px solid rgba(255,255,255,.08)" src="' + p.image + '" alt="' + p.title + '"/>' : '';
+      const metaTag = p.metaDesc ? '<meta name="description" content="' + p.metaDesc + '"/>' : '';
+      const css = ':root{--bg:#0a0f1e;--gold:#c9a227;--text:#f1f5f9;--muted:#94a3b8;--font-h:Outfit,sans-serif;--font-b:Inter,sans-serif}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--font-b);min-height:100vh}.top-bar{position:sticky;top:0;z-index:100;background:rgba(10,15,30,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between}.top-bar-brand{font-family:var(--font-h);font-size:1.2rem;font-weight:800;color:var(--text);text-decoration:none}.top-bar-brand span{color:var(--gold)}.back-link{font-size:.85rem;font-weight:500;color:var(--muted);text-decoration:none;padding:7px 16px;border:1px solid rgba(255,255,255,.1);border-radius:50px}.page-wrap{max-width:900px;margin:0 auto;padding:60px 32px 100px}.page-title{font-family:var(--font-h);font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;letter-spacing:-.03em;margin-bottom:32px}.page-content{line-height:1.85;font-size:1.05rem;color:#cbd5e1}.page-content h2{font-family:var(--font-h);font-size:1.7rem;font-weight:700;color:var(--text);margin:40px 0 16px}.page-content h3{font-family:var(--font-h);font-size:1.3rem;color:var(--text);margin:32px 0 12px}.page-content p{margin-bottom:20px}.page-content ul,.page-content ol{padding-left:28px;margin-bottom:20px}.page-content li{margin-bottom:8px}.page-content strong{color:var(--text)}.page-content a{color:var(--gold)}.page-footer{text-align:center;padding:32px;color:var(--muted);font-size:.85rem;border-top:1px solid rgba(255,255,255,.06)}.page-footer a{color:var(--gold);text-decoration:none}@media(max-width:768px){.page-wrap{padding:40px 20px 80px}.top-bar{padding:0 20px}}';
+      const fonts = '<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">';
+      const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>' + p.title + ' | CODART</title>' + metaTag + fonts + '<style>' + css + '</style></head><body>'
+        + '<div class="top-bar"><a href="index.html" class="top-bar-brand">COD<span>ART</span> &trade;</a><a href="index.html" class="back-link">&larr; Home</a></div>'
+        + '<main class="page-wrap">' + coverHtml + '<h1 class="page-title">' + p.title + '</h1><div class="page-content">' + (p.content || '') + '</div></main>'
+        + '<footer class="page-footer"><p>&copy; ' + new Date().getFullYear() + ' <a href="index.html">CODART Digital Studio</a></p></footer>'
+        + '</body></html>';
+      const blob = new Blob([html], { type: 'text/html' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = p.slug + '.html'; a.click();
+      showToast('Downloaded: ' + p.slug + '.html - Place in your website folder.', 'success');
+    }
+
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+    function saveAll() {
+      localStorage.setItem('codart_menu', JSON.stringify(menuData));
+      localStorage.setItem('codart_blogs', JSON.stringify(blogsData));
+      localStorage.setItem('codart_demos', JSON.stringify(demosData));
+      localStorage.setItem('codart_pages', JSON.stringify(pagesData));
+      showToast('All changes saved! Pages updated.', 'success');
+    }
+
+    function exportData() {
+      const data = { menu: menuData, blogs: blogsData, demos: demosData, pages: pagesData };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'codart-cms-data.json'; a.click();
+    }
+    function importData(e) {
+      const file = e.target.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        try {
+          const d = JSON.parse(ev.target.result);
+          if (d.menu) menuData = d.menu;
+          if (d.blogs) blogsData = d.blogs;
+          if (d.demos) demosData = d.demos;
+          if (d.pages) pagesData = d.pages;
+          renderAll(); showToast('Data imported successfully!', 'success');
+        } catch (err) { showToast('Invalid JSON file', 'error'); }
+      };
+      reader.readAsText(file);
+    }
+
+    let toastTimer;
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.className = 'toast ' + type;
+      clearTimeout(toastTimer);
+      requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
+      toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    // Expose login/logout globally so inline onclick attributes can always find them
+    window.doLogin  = doLogin;
+    window.doLogout = doLogout;
+    window.switchTab = switchTab;
+
+    // Script is at bottom of <body> so DOM is already ready — no DOMContentLoaded needed
+    // Login button & Enter key
+    document.getElementById('loginBtn').addEventListener('click', doLogin);
+    document.getElementById('unInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+    document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+    // Modal close on backdrop click
+    document.getElementById('blogModal').addEventListener('click', e => { if (e.target === document.getElementById('blogModal')) closeModal('blogModal'); });
+    document.getElementById('demoModal').addEventListener('click', e => { if (e.target === document.getElementById('demoModal')) closeModal('demoModal'); });
+    document.getElementById('pageModal').addEventListener('click', e => { if (e.target === document.getElementById('pageModal')) closeModal('pageModal'); });
+
+    // Escape key closes modals
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { ['blogModal', 'demoModal', 'pageModal'].forEach(id => document.getElementById(id).classList.remove('open')); } });
+
+    // Auto-generate slug from page title
+    document.getElementById('pg-title').addEventListener('input', function () { if (!editPageId) document.getElementById('pg-slug').value = this.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); });
+  </script>
+</body>
+
+</html>
